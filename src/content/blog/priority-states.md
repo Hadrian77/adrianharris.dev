@@ -66,8 +66,7 @@ An example of this popped up while I was watching a video about a game I really 
 I'll spare most of the details, but simply put, there was a bug where if a player tried to sell a sword that was magically bound to their character, they would get the money from the sale, but still keep the sword.
  
 Would it be better if the bug didn’t exist? Of course, and it would be better if a development team never missed an edge case as well, but I'd like to imagine that somewhere during the planning of this magical-binding feature, the team decided that it would really suck if your magic sword got lost, way more than it would suck if the magical sword didn't follow the rest of the rules that keep the game close to reality.
-In this imaginary conference room, I'd like to think someone stood up and said, ‘Let’s make the priority state that the sword stays with the player — and we’ll figure out the rest later."
-
+In this imaginary conference room, I'd like to think someone stood up and said, "Let’s make the priority state that the sword stays with the player — and we’ll figure out the rest later"
 ## TL;DR
  
  Defining a priority state early helps focus your implementation on what matters most, and makes edge cases easier to manage. Whether it’s a banking app or a game, this mindset can guide better design decisions.
