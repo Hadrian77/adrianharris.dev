@@ -27,9 +27,9 @@ I'm disregarding a few details that aren't strictly needed, but I'll mention a f
  
 *If we kill sessions without notifying the user they can lose their unsubmitted changes.*
  
-*Even if we allow a user a new session, we probably need to block them temporarily to warn them before killing an old session*
+*Even if we allow a user a new session, we probably need to block them temporarily to warn them before killing an old session.*
  
-*Implementation could potentially look very similar between both approaches anyway,*
+*Implementation could potentially look very similar between both approaches anyway.*
  
 *A bunch more details that a domain expert would pick up on.*
 
@@ -38,9 +38,11 @@ I'm disregarding a few details that aren't strictly needed, but I'll mention a f
  
 What is really of interest to me is the effect of clearly outlining which of the two states is the priority state of the system.
 
-Is the priority state of the user that they are unauthorized or authorized, or is the focus on keeping out unauthorized users, or making ease of use for authorized ones.
+Is the priority state of the user that they are unauthorized or authorized?  
 
 The state that best serves the overall meaning, purpose or function of the application should be the priority state.
+
+Put another way, is it more important for the overall system, to block users with too many sessions, or to maintain accessibility for users with too many sessions.
 
 Using the outlined example, if the priority state is an unauthorized user, we would lean heavily towards the requirement that a user is blocked until session count is corrected.
 If the priority state is an authorized user, a requirement where a user isn't ever blocked from starting a new session would be a winner.
