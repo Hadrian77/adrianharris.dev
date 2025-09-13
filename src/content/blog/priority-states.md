@@ -52,8 +52,6 @@ Even after requirements are determined, I would approach implementation very dif
 Using Porty as an example, if a user being unauthorized is the priority state, a development team would naturally fill in implementation details like "what do we do if a user is denied too many times" much earlier in the process. Whereas this would be an edge case or even a non-starter if the priority state was for a user to be authorized.
 
 On the other hand, if the priority state is a user being authorized, a team might pursue allowing a user access to the application, then cleaning up and limiting session count asynchronously after the fact. If the priority state was a user being unauthorized, it would make a lot less sense to try to tackle the synchronization and concurrency concerns that could allow a user to violate the authorization contstraints.
-
-Additionally, definining a priority state would naturally lead to thinking of the priority state as a default, and alternate states being transitional states or edge cases. This way, most of the unconsidered edge cases, or complex state transitions would be on account of the deprioritized states, rather than the prioritized state. This leads me to believe accounting for this at the beginning of a project, would lead to bugs having less severe impact, because we are intentionally targeting what the more important behaviors are for our app and making those more understood and focused on. Every project has bugs and complexity, so I’d rather direct that complexity toward the lower priority states.
  
 Of course, the desired state won't be the same from app to app. If I had an app containing super sensitive information, I would prioritize the unauthorized state in this example. But if the app was a game or something, I might prioritize the authorized state. For Porty, I believe the authorized state should be the priority, as its used several times a day by its core user base, doesn't contain very much sensitive data, and the session limitations already assume that the user has provided valid credential data.
 
@@ -67,6 +65,13 @@ I'll spare most of the details, but simply put, there was a bug where if a playe
  
 Would it be better if the bug didn’t exist? Of course, and it would be better if a development team never missed an edge case as well, but I'd like to imagine that somewhere during the planning of this magical-binding feature, the team decided that it would really suck if your magic sword got lost, way more than it would suck if the magical sword didn't follow the rest of the rules that keep the game close to reality.
 In this imaginary conference room, I'd like to think someone stood up and said, "Let’s make the priority state that the sword stays with the player — and we’ll figure out the rest later"
+
+This leads me to believe defining priority state at the beginning of a project, would lead to bugs having less severe impact, because we are intentionally targeting what the more important behaviors are for our app and making those more understood and focused on. Definining a priority state would naturally lead to thinking of the priority state as a default, and alternate states being transitional states or edge cases. This way, most of the unconsidered edge cases, or complex state transitions would be on account of the deprioritized states, rather than the prioritized state.
+
+Using the Baldur's Gate example, during implementation if the sword were made immune to all processes that could seperate the player from the sword, then exceptions to the rule were addressed, the unconsidered edge cases would be instances where the sword should be removed but wasn't. Also, if we look at the sword being on the player as a default, most of the code written to change the state of the sword, would be moving from having the sword to no longer having it. If these processes are bugged, and having the sword is the default, the buggy code would usually result in the player keeping the sword.
+
+Every project has some amount of bugs and complexity, so I’d rather direct that complexity toward the lower priority states.
+
 ## TL;DR
  
  Defining a priority state early helps focus your implementation on what matters most, and makes edge cases easier to manage. Whether it’s a banking app or a game, this mindset can guide better design decisions.
